@@ -1,15 +1,26 @@
 # Flux Systems Language Compiler
 
-Flux is a minimalist systems programming language compiler written in Rust. It is designed to parse source code syntax and compile it directly into raw x86 16-bit real-mode machine binaries for custom operating system development, completely bypassing conventional operating system layers.
+Flux is a minimalist systems programming language compiler written in Rust. It parses custom source code syntax and outputs raw x86 16-bit real-mode machine binaries, allowing you to execute code natively on bare-metal hardware or emulators (like QEMU) without an underlying operating system.
 
-## Project Structure
-* `src/main.rs`: The core Rust compiler engine that parses double-quoted strings and translates them into x86 assembly lines.
-* `main.fx`: A sample program demonstrating bare-metal string compilation.
-* `build.bat`: A localized automation script to compile the source, assemble it via NASM, and spin up the QEMU emulator sandbox.
+## 📁 Repository Map
+* **`src/main.rs`** - The core Rust engine. It parses the custom tokens (like double-quoted strings) and handles the structural code generation.
+* **`Cargo.toml`** - Manages the Rust dependencies and optimized system build profiles.
+* **`main.fx`** - A sample Flux source script showcasing bare-metal text generation.
+* **`build.bat`** - A development automation script that links the compiler output to NASM and spins up QEMU.
 
-## How to Run Locally
+## 🛠️ Developer Toolchain Requirements
+To work with or modify this codebase, your local environment needs:
+1. **Rust Toolchain** (`cargo`, `rustc`)
+2. **NASM** (Netwide Assembler, added to system PATH or using absolute path mapping)
+3. **QEMU** (`qemu-system-x86_64` machine emulator)
 
-1. Clone this repository to your machine.
-2. Build the compiler executable using the Rust toolchain:
-   ```bash
-   cargo build --release
+## 🚀 Building & Running From Source
+Other developers can pull this repository and launch it locally by running:
+
+```bash
+# 1. Compile the Rust project into an optimized release binary
+cargo build --release
+
+# 2. Run the automation pipeline to compile, assemble, and emulate
+# (Ensure your compiled 'flux.exe' tool is placed next to your scripts)
+./build.bat
